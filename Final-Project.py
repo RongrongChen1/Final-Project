@@ -4,37 +4,38 @@ import json
 # --------------------------------
 st.title('Different World Informations')
 df_uv = pd.read_csv('USvideos.csv')
-df_uv['new_views'] = df_uv[df_uv['views']>1000000].views/1000000
+df_uv['new_views'] = df_uv[df_uv['views'] > 1000000].views/1000000
 df_uv['thumb_rate'] = df_uv['likes']/df_uv['views']
 uv_list = []
 i = 0
-f = open('US_category_id.json','r')
+f = open('US_category_id.json', 'r')
 a = json.load(f)
 uv_id = df_uv['category_id'].value_counts().index
 for id in uv_id:
     i = 0
-    while i<= 31: 
+    while i <= 31:
         if int(a['items'][i]['id']) == id:
             uv_list.append(a['items'][i]['snippet']['title'])
-        else: 
+        else:
             pass
-        i += 1  
+        i += 1
 id = {
     'id': uv_id,
-    'Corresponding':uv_list,
+    'Corresponding': uv_list,
 }
 dv_uv = pd.DataFrame(id)
 st.write(dv_uv)
 st.write('-'*20)
-#----------------------------------
+# ----------------------------------
 # note that you have to use 0.0 and 40.0 given that the data type of population is float
-Views_filter = st.slider('Which was affected by views:', 0.0, 225.3, 5.4)  # min, max, default
+Views_filter = st.slider('Which was affected by views:',
+                         0.0, 225.3, 5.4)  # min, max, default
 
 # create a multi select
 capital_filter = st.sidebar.multiselect(
-     'Capital Selector',
-     df_uv.category_id.unique(),  # options
-     df_uv.category_id.unique())  # defaults
+    'Capital Selector',
+    df_uv.category_id.unique(),  # options
+    df_uv.category_id.unique())  # defaults
 
 # create a input form
 form = st.sidebar.form("Category_id")
@@ -51,7 +52,7 @@ if category_id_filter == 'ALL':
     df_uv = df_uv
 else:
     df_uv = df_uv[df_uv.category_id == category_id_filter]
-df_uv.loc[:,['views','likes','dislikes','comment_count','thumb_rate']]
+df_uv.loc[:, ['views', 'likes', 'dislikes', 'comment_count', 'thumb_rate']]
 # # show dataframe
 # st.subheader('City Details:')
 # st.write(df[['city', 'country', 'population']])
