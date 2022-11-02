@@ -15,5 +15,6 @@ https://github.com/RongrongChen1/Final-Project/blob/main/US_category_id.json
 https://github.com/RongrongChen1/Final-Project/blob/main/USvideos.csv
 # Questions url:
 https://github.com/RongrongChen1/Final-Project/blob/main/Questions.txt
-
+# Streamlit url:
+https://harryjwang.notion.site/Final-Team-Project-Data-App-f14066b14a4144ed9a521f5a9ee18c54
 ---
