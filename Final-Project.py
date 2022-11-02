@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import json
-plt.style.use('seaborn')
 # --------------------------------
 st.title('Different World Informations')
 df_uv = pd.read_csv('USvideos.csv')
@@ -49,7 +47,9 @@ df_uv = df_uv[df_uv.new_views >= Views_filter]
 # filter by capital
 df_uv = df_uv[df_uv.category_id.isin(capital_filter)]
 
-if category_id_filter!='ALL':
+if category_id_filter == 'ALL':
+    df_uv = df_uv
+else:
     df_uv = df_uv[df_uv.category_id == category_id_filter]
 df_uv.loc[:,['views','likes','dislikes','comment_count','thumb_rate']]
 # # show dataframe
